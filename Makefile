@@ -15,7 +15,7 @@ OBJS=$(SRC:.c=.o)
 AR=ar rc
 LIB=ranlib
 CC=clang
-CFLAGS=-Wall -Wextra -Werror
+CFLAGS=-Wall -Wextra -Werror -g3
 
 .c.o:
 	$(CC) $(CFLAGS) -c $< -o $(<:.c=.o)

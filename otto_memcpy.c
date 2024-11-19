@@ -1,38 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   osgc_addblock_back.c                               :+:      :+:    :+:   */
+/*   otto_memcpy.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tblochet <tblochet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/12 14:35:30 by tblochet          #+#    #+#             */
-/*   Updated: 2024/11/19 20:42:53 by tblochet         ###   ########.fr       */
+/*   Created: 2024/11/09 11:01:51 by tblochet          #+#    #+#             */
+/*   Updated: 2024/11/19 21:10:48 by tblochet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "osgc.h"
 
-t_gcblock	*osgc_addblock_back(t_gcblock *new)
+void	*otto_memcpy(void *d, void const *s, size_t sz)
 {
-	t_gcblock	*tmp;
-	t_otto_gc	*gc;
+	char const	*src;
+	char		*dest;
 
-	gc = osgc_instance();
-	if (!(gc))
-		return (0);
-	if (!gc->blocks)
-	{
-		gc->blocks = new;
-		return (gc->blocks);
-	}
-	tmp = gc->blocks;
-	while (tmp)
-	{
-		if (tmp->next)
-			tmp = tmp->next;
-		else
-			break ;
-	}
-	tmp->next = new;
-	return (gc->blocks);
+	src = s;
+	if (!d && !s)
+		return (d);
+	dest = d;
+	while (sz--)
+		*dest++ = *src++;
+	return (d);
 }

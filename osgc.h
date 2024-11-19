@@ -6,7 +6,7 @@
 /*   By: tblochet <tblochet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 15:01:07 by tblochet          #+#    #+#             */
-/*   Updated: 2024/11/19 08:35:33 by tblochet         ###   ########.fr       */
+/*   Updated: 2024/11/19 21:12:37 by tblochet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,7 @@ void					*osgc_delblock(t_gcblock *block);
 int						osgc_blocksz(void);
 void					*osgc_clear(void);
 void					*osgc_malloc(size_t sz);
+void					*osgc_realloc(void *mem, size_t old_sz, size_t new_sz);
 void					otto_bzero(void *mem, size_t sz);
+void					*otto_memcpy(void *d, void const *s, size_t sz);
 #endif
