@@ -6,7 +6,7 @@
 /*   By: tblochet <tblochet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 15:01:07 by tblochet          #+#    #+#             */
-/*   Updated: 2024/11/19 21:12:37 by tblochet         ###   ########.fr       */
+/*   Updated: 2024/11/20 17:32:47 by tblochet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define OSGC_H
 # include <stdint.h>
 # include <stdlib.h>
+# include <stdio.h>
 
 typedef struct s_gcblock
 {

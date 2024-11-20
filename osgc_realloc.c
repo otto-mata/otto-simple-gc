@@ -6,7 +6,7 @@
 /*   By: tblochet <tblochet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 15:31:43 by tblochet          #+#    #+#             */
-/*   Updated: 2024/11/19 21:11:30 by tblochet         ###   ########.fr       */
+/*   Updated: 2024/11/20 17:49:22 by tblochet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	*osgc_realloc(void *mem, size_t old_sz, size_t new_sz)
 	if (!block)
 		return (0);
 	nmem = malloc(new_sz);
+
 	otto_memcpy(nmem, mem, old_sz);
 	free(mem);
 	block->mem = nmem;

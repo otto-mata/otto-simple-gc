@@ -6,7 +6,7 @@
 /*   By: tblochet <tblochet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 14:35:30 by tblochet          #+#    #+#             */
-/*   Updated: 2024/11/19 20:42:53 by tblochet         ###   ########.fr       */
+/*   Updated: 2024/11/20 16:49:31 by tblochet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_gcblock	*osgc_addblock_back(t_gcblock *new)
 	gc = osgc_instance();
 	if (!(gc))
 		return (0);
-	if (!gc->blocks)
+	if (!(gc->blocks))
 	{
 		gc->blocks = new;
 		return (gc->blocks);
