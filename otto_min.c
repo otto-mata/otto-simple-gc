@@ -1,31 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   otto_memcpy.c                                      :+:      :+:    :+:   */
+/*   otto_min.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tblochet <tblochet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/09 11:01:51 by tblochet          #+#    #+#             */
-/*   Updated: 2024/11/22 10:15:54 by tblochet         ###   ########.fr       */
+/*   Created: 2024/11/22 09:14:40 by tblochet          #+#    #+#             */
+/*   Updated: 2024/11/22 09:19:57 by tblochet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "osgc.h"
 
-void	*otto_memcpy(void *d, void const *s, size_t sz)
+size_t	otto_min(size_t a, size_t b)
 {
-	unsigned char const	*src = s;
-	unsigned char		*dest;
-	size_t				i;
-
-	if (!d && !s)
-		return (d);
-	dest = d;
-	i = 0;
-	while (i < sz)
-	{
-		dest[i] = src[i];
-		i++;
-	}
-	return (d);
+	if (a < b)
+		return (a);
+	return (b);
 }

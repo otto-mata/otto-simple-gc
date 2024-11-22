@@ -6,7 +6,7 @@
 /*   By: tblochet <tblochet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 15:31:43 by tblochet          #+#    #+#             */
-/*   Updated: 2024/11/20 17:49:22 by tblochet         ###   ########.fr       */
+/*   Updated: 2024/11/22 10:27:38 by tblochet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	*osgc_realloc(void *mem, size_t old_sz, size_t new_sz)
 	t_otto_gc	*gc;
 	t_gcblock	*block;
 	void		*nmem;
+	size_t		sz;
 
 	gc = osgc_instance();
 	if (!gc)
@@ -32,10 +33,10 @@ void	*osgc_realloc(void *mem, size_t old_sz, size_t new_sz)
 	}
 	if (!block)
 		return (0);
+	sz = otto_min(new_sz, old_sz);
 	nmem = malloc(new_sz);
-
-	otto_memcpy(nmem, mem, old_sz);
-	free(mem);
+	otto_memcpy(nmem, mem, sz);
+	free(block->mem);
 	block->mem = nmem;
 	return (nmem);
 }

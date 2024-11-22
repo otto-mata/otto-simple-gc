@@ -6,15 +6,15 @@
 /*   By: tblochet <tblochet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 15:01:07 by tblochet          #+#    #+#             */
-/*   Updated: 2024/11/20 17:32:47 by tblochet         ###   ########.fr       */
+/*   Updated: 2024/11/22 09:15:33 by tblochet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef OSGC_H
 # define OSGC_H
 # include <stdint.h>
-# include <stdlib.h>
 # include <stdio.h>
+# include <stdlib.h>
 
 typedef struct s_gcblock
 {
@@ -39,4 +39,5 @@ void					*osgc_malloc(size_t sz);
 void					*osgc_realloc(void *mem, size_t old_sz, size_t new_sz);
 void					otto_bzero(void *mem, size_t sz);
 void					*otto_memcpy(void *d, void const *s, size_t sz);
+size_t					otto_min(size_t a, size_t b);
 #endif

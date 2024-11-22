@@ -11,7 +11,8 @@ SRC=osgc_clear.c \
 	osgc_lastblock.c \
 	osgc_instance.c \
 	osgc_realloc.c \
-	otto_memcpy.c 
+	otto_memcpy.c \
+	otto_min.c
 OBJS=$(SRC:.c=.o)
 AR=ar rc
 LIB=ranlib
