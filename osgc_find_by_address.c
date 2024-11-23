@@ -1,34 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   osgc_realloc.c                                     :+:      :+:    :+:   */
+/*   osgc_find_by_address.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tblochet <tblochet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/18 15:31:43 by tblochet          #+#    #+#             */
-/*   Updated: 2024/11/23 17:09:44 by tblochet         ###   ########.fr       */
+/*   Created: 2024/11/23 16:06:20 by tblochet          #+#    #+#             */
+/*   Updated: 2024/11/23 16:08:04 by tblochet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "osgc.h"
 
-void	*osgc_realloc(void *mem, size_t old_sz, size_t new_sz)
+t_gcblock	*osgc_find_by_address(void *addr)
 {
+	t_otto_gc	*gc;
 	t_gcblock	*block;
-	void		*nmem;
-	size_t		sz;
 
-	nmem = osgc_malloc(new_sz);
-	if (!nmem)
+	gc = osgc_instance();
+	if (!gc)
 		return (0);
-	if (!mem)
-		return (nmem);
-	block = osgc_find_by_address(mem);
-	if (!block)
+	if (!gc->blocks)
 		return (0);
-	sz = otto_min(new_sz, old_sz);
-	while (sz--)
-		((unsigned char *)nmem)[sz] = ((unsigned char *)mem)[sz];
-	osgc_delblock(block);
-	return (nmem);
+	block = gc->blocks;
+	while (block)
+	{
+		if ((unsigned long)block->mem == (unsigned long)addr)
+			return (block);
+		block = block->next;
+	}
+	return (0);
 }

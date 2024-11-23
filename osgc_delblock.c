@@ -6,7 +6,7 @@
 /*   By: tblochet <tblochet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 14:39:01 by tblochet          #+#    #+#             */
-/*   Updated: 2024/11/19 08:35:19 by tblochet         ###   ########.fr       */
+/*   Updated: 2024/11/23 16:49:46 by tblochet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,10 @@ void	*osgc_delblock(t_gcblock *block)
 
 	gc = osgc_instance();
 	if (block)
+	{
 		free(block->mem);
-	free(block);
+		block->mem = 0;
+	}
+	// free(block);
 	return (0);
 }
