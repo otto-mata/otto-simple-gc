@@ -6,17 +6,17 @@
 /*   By: tblochet <tblochet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 14:28:13 by tblochet          #+#    #+#             */
-/*   Updated: 2024/11/19 08:34:35 by tblochet         ###   ########.fr       */
+/*   Updated: 2024/11/25 10:07:25 by tblochet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "osgc.h"
 
-t_gcblock	*osgc_newblock(void *mem)
+t_block	*osgc_newblock(void *mem)
 {
-	t_gcblock	*node;
+	t_block	*node;
 
-	node = malloc(sizeof(t_gcblock));
+	node = malloc(sizeof(t_block));
 	if (!node)
 		return (0);
 	node->mem = mem;

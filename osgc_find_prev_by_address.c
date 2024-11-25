@@ -1,30 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   osgc_blocksz.c                                     :+:      :+:    :+:   */
+/*   osgc_find_prev_by_address.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tblochet <tblochet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/12 14:32:16 by tblochet          #+#    #+#             */
-/*   Updated: 2024/11/25 13:59:10 by tblochet         ###   ########.fr       */
+/*   Created: 2024/11/25 09:59:03 by tblochet          #+#    #+#             */
+/*   Updated: 2024/11/25 10:07:47 by tblochet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "osgc.h"
 
-int	osgc_blocksz(void)
+t_block	*osgc_find_prev_by_address(void *addr)
 {
-	int		i;
 	t_gc	*gc;
-	t_block	*iter;
+	t_block	*block;
 
 	gc = osgc_instance();
-	i = 0;
-	iter = gc->blocks;
-	while (iter)
+	if (!gc)
+		return (0);
+	if (!gc->blocks)
+		return (0);
+	block = gc->blocks;
+	while (block && block->next)
 	{
-		iter = iter->next;
-		i++;
+		if ((unsigned long)block->next->mem == (unsigned long)addr)
+			return (block);
+		block = block->next;
 	}
-	return (i);
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: tblochet <tblochet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 15:01:07 by tblochet          #+#    #+#             */
-/*   Updated: 2024/11/23 19:10:49 by tblochet         ###   ########.fr       */
+/*   Updated: 2024/11/25 13:59:47 by tblochet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,20 +20,22 @@ typedef struct s_gcblock
 {
 	void				*mem;
 	struct s_gcblock	*next;
-}						t_gcblock;
+}						t_block;
 
 typedef struct s_otto_gc
 {
-	t_gcblock			*blocks;
-}						t_otto_gc;
+	t_block				*blocks;
+}						t_gc;
 
-t_otto_gc				*osgc_instance(void);
-t_gcblock				*osgc_addblock_back(t_gcblock *new);
-t_gcblock				*osgc_addblock_front(t_gcblock *new);
-t_gcblock				*osgc_newblock(void *mem);
-t_gcblock				*osgc_lastblock(void);
-t_gcblock				*osgc_find_by_address(void *addr);
-void					*osgc_delblock(t_gcblock *block);
+t_gc					*osgc_instance(void);
+t_block					*osgc_addblock_back(t_block *new);
+t_block					*osgc_addblock_front(t_block *new);
+t_block					*osgc_newblock(void *mem);
+t_block					*osgc_lastblock(void);
+t_block					*osgc_find_by_address(void *addr);
+t_block					*osgc_find_prev_by_address(void *addr);
+void					*osgc_delblock(t_block *block);
+void					osgc_free(void *mem);
 int						osgc_blocksz(void);
 void					*osgc_clear(void);
 void					*osgc_malloc(size_t sz);

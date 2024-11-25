@@ -13,7 +13,10 @@ SRC=osgc_clear.c \
 	osgc_realloc.c \
 	otto_memcpy.c \
 	otto_min.c \
-	osgc_find_by_address.c 
+	osgc_find_by_address.c \
+	osgc_find_prev_by_address.c \
+	osgc_free.c
+
 OBJS=$(SRC:.c=.o)
 AR=ar rc
 LIB=ranlib

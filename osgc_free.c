@@ -1,30 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   osgc_blocksz.c                                     :+:      :+:    :+:   */
+/*   osgc_free.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tblochet <tblochet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/12 14:32:16 by tblochet          #+#    #+#             */
-/*   Updated: 2024/11/25 13:59:10 by tblochet         ###   ########.fr       */
+/*   Created: 2024/11/25 11:53:29 by tblochet          #+#    #+#             */
+/*   Updated: 2024/11/25 11:54:47 by tblochet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "osgc.h"
 
-int	osgc_blocksz(void)
+void	osgc_free(void *mem)
 {
-	int		i;
-	t_gc	*gc;
-	t_block	*iter;
+	t_block *const	block = osgc_find_by_address(mem);
 
-	gc = osgc_instance();
-	i = 0;
-	iter = gc->blocks;
-	while (iter)
-	{
-		iter = iter->next;
-		i++;
-	}
-	return (i);
+	if (!block)
+		return ;
+	osgc_delblock(block);
 }
