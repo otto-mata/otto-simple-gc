@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   mem_manager.h                                      :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: ottomata <ottomata@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/08 23:57:40 by ottomata          #+#    #+#             */
-/*   Updated: 2025/03/09 01:46:12 by ottomata         ###   ########.fr       */
+/*                                                                            */
+/*   mem_manager.h                                        ┌─┐┌┬┐┌┬┐┌─┐        */
+/*                                                        │ │ │  │ │ │        */
+/*   By: tblochet <tblochet@student.42.fr>                └─┘ ┴  ┴ └─┘        */
+/*                                                        ┌┬┐┌─┐┌┬┐┌─┐        */
+/*   Created: 2025/03/08 23:57:40 by ottomata             │││├─┤ │ ├─┤        */
+/*   Updated: 2025/03/11 14:27:18 by tblochet             ┴ ┴┴ ┴ ┴ ┴ ┴        */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ typedef void					(*t_fn_free)(void *p);
 
 struct							s_mem_page_chunk
 {
-	char x : 1;
-	size_t sz : 63;
+	char						x : 1;
+	size_t						sz : 63;
 };
 
 struct							s_mem_page
@@ -74,7 +74,8 @@ void							*ft_memcpy(void *d, void const *s, size_t sz);
 void							*ft_memmove(void *d, void const *s, size_t sz);
 t_mpc							*find_chunk_of_size(t_mm *mm, size_t sz);
 t_mpc							*fragment_block(t_mpc *chunk, size_t sz);
-t_mpc							*get_next_block_in_page(t_mpc *chunk, int find_zero);
+t_mpc							*get_next_block_in_page(t_mpc *chunk,
+									int find_zero);
 t_mpc							*get_first_block_in_page(t_mp *mem_page);
 int								new_memory_page(t_mm *alloc, size_t page_size);
 #endif
