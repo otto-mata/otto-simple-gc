@@ -6,7 +6,7 @@
 /*   By: tblochet <tblochet@student.42.fr>                └─┘ ┴  ┴ └─┘        */
 /*                                                        ┌┬┐┌─┐┌┬┐┌─┐        */
 /*   Created: 2025/03/09 00:27:31 by ottomata             │││├─┤ │ ├─┤        */
-/*   Updated: 2025/03/11 14:26:43 by tblochet             ┴ ┴┴ ┴ ┴ ┴ ┴        */
+/*   Updated: 2025/04/10 06:26:12 by tblochet             ┴ ┴┴ ┴ ┴ ┴ ┴        */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ static void	*__realloc(void *p, size_t sz)
 		return (p);
 	}
 	infop = p - sizeof(t_mpc);
-	next = mm_realloc(0, sz);
+	next = m_resize(0, sz);
 	ft_memmove(next, p, infop->sz);
-	mm_free(p);
+	m_delete(p);
 	return (next);
 }
 
@@ -38,7 +38,7 @@ static void	*__malloc(size_t size)
 	t_mpc	*infop;
 	t_mm	*mm;
 
-	mm = memory_manager();
+	mm = m();
 	infop = find_chunk_of_size(mm, size);
 	if (!infop)
 	{
@@ -53,7 +53,7 @@ static void	*__malloc(size_t size)
 	return ((void *)infop + sizeof(t_mpc));
 }
 
-void	*mm_realloc(void *p, size_t sz)
+void	*m_resize(void *p, size_t sz)
 {
 	size_t	rounded_size;
 
@@ -62,10 +62,10 @@ void	*mm_realloc(void *p, size_t sz)
 		errno = ENOMEM;
 		return (0);
 	}
-	rounded_size = pow_2_up_to_exp(sz, PAGE_ALIGN);
+	rounded_size = align_to(sz, PAGE_ALIGN);
 	if (p && !rounded_size)
 	{
-		mm_free(p);
+		m_delete(p);
 		return (0);
 	}
 	if (!p)
@@ -73,7 +73,7 @@ void	*mm_realloc(void *p, size_t sz)
 	return (__realloc(p, rounded_size));
 }
 
-void	*mm_malloc(size_t sz)
+void	*m_reserve(size_t sz)
 {
-	return (mm_realloc(0, sz));
+	return (m_resize(0, sz));
 }

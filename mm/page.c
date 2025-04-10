@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   page.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: ottomata <ottomata@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/09 01:13:23 by ottomata          #+#    #+#             */
-/*   Updated: 2025/03/09 01:47:49 by ottomata         ###   ########.fr       */
+/*                                                                            */
+/*   page.c                                               ┌─┐┌┬┐┌┬┐┌─┐        */
+/*                                                        │ │ │  │ │ │        */
+/*   By: tblochet <tblochet@student.42.fr>                └─┘ ┴  ┴ └─┘        */
+/*                                                        ┌┬┐┌─┐┌┬┐┌─┐        */
+/*   Created: 2025/03/09 01:13:23 by ottomata             │││├─┤ │ ├─┤        */
+/*   Updated: 2025/04/10 06:23:20 by tblochet             ┴ ┴┴ ┴ ┴ ┴ ┴        */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	new_memory_page(t_mm *mm, size_t page_size)
 {
 	t_mpn	*node;
 
-	page_size = pow_2_up_to_exp(page_size, PAGE_POW_2);
+	page_size = align_to(page_size, PAGE_POW_2);
 	if (!mm->pnodes && __new_memory_page_node(&mm->pnodes))
 		return (1);
 	node = mm->pnodes;

@@ -6,7 +6,7 @@
 /*   By: tblochet <tblochet@student.42.fr>                └─┘ ┴  ┴ └─┘        */
 /*                                                        ┌┬┐┌─┐┌┬┐┌─┐        */
 /*   Created: 2025/03/08 23:57:40 by ottomata             │││├─┤ │ ├─┤        */
-/*   Updated: 2025/04/10 06:12:37 by tblochet             ┴ ┴┴ ┴ ┴ ┴ ┴        */
+/*   Updated: 2025/04/10 06:26:12 by tblochet             ┴ ┴┴ ┴ ┴ ┴ ┴        */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,12 +63,12 @@ struct							s_mem_manager
 	t_mpn						*pnodes;
 };
 
-t_mm							*memory_manager(void);
-void							mm_destroy(void);
-void							mm_free(void *p);
-void							*mm_realloc(void *p, size_t sz);
-void							*mm_malloc(size_t sz);
-size_t							pow_2_up_to_exp(size_t n, size_t exponent);
+t_mm							*m(void);
+void							m_teardown(void);
+void							m_delete(void *p);
+void							*m_resize(void *p, size_t sz);
+void							*m_reserve(size_t sz);
+size_t							align_to(size_t n, size_t exponent);
 void							ft_bzero(void *mem, size_t sz);
 void							*ft_memcpy(void *d, void const *s, size_t sz);
 void							*ft_memmove(void *d, void const *s, size_t sz);

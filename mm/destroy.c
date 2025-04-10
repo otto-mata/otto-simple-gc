@@ -6,19 +6,19 @@
 /*   By: tblochet <tblochet@student.42.fr>                └─┘ ┴  ┴ └─┘        */
 /*                                                        ┌┬┐┌─┐┌┬┐┌─┐        */
 /*   Created: 2025/03/09 01:23:28 by ottomata             │││├─┤ │ ├─┤        */
-/*   Updated: 2025/03/11 14:26:40 by tblochet             ┴ ┴┴ ┴ ┴ ┴ ┴        */
+/*   Updated: 2025/04/10 06:25:48 by tblochet             ┴ ┴┴ ┴ ┴ ┴ ┴        */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mem_manager.h"
 
-void	mm_destroy(void)
+void	m_teardown(void)
 {
 	t_mpn	*node;
 	t_mpn	*next;
 	size_t	idx;
 
-	node = memory_manager()->pnodes;
+	node = m()->pnodes;
 	while (node)
 	{
 		idx = 0;

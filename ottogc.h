@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                                            */
-/*   test.c                                               ┌─┐┌┬┐┌┬┐┌─┐        */
+/*   ottogc.h                                             ┌─┐┌┬┐┌┬┐┌─┐        */
 /*                                                        │ │ │  │ │ │        */
 /*   By: tblochet <tblochet@student.42.fr>                └─┘ ┴  ┴ └─┘        */
 /*                                                        ┌┬┐┌─┐┌┬┐┌─┐        */
-/*   Created: 2025/03/09 01:36:05 by ottomata             │││├─┤ │ ├─┤        */
-/*   Updated: 2025/04/10 06:26:12 by tblochet             ┴ ┴┴ ┴ ┴ ┴ ┴        */
+/*   Created: 2025/04/10 06:24:49 by tblochet             │││├─┤ │ ├─┤        */
+/*   Updated: 2025/04/10 06:27:13 by tblochet             ┴ ┴┴ ┴ ┴ ┴ ┴        */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mem_manager.h"
+#ifndef OTTOGC_H
+# define OTTOGC_H
 
-int	main(void)
-{
-	char	*s;
+typedef unsigned long	t_u64;
 
-	s = m_reserve(200);
-	s = m_resize(s, 2);
-	s[0] = 'o';
-	m_teardown();
-}
+void					m_teardown(void);
+void					m_delete(void *p);
+void					*m_resize(void *p, t_u64 sz);
+void					*m_reserve(t_u64 sz);
+
+#endif
