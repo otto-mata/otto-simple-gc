@@ -6,7 +6,7 @@
 /*   By: tblochet <tblochet@student.42.fr>                └─┘ ┴  ┴ └─┘        */
 /*                                                        ┌┬┐┌─┐┌┬┐┌─┐        */
 /*   Created: 2025/03/08 23:57:40 by ottomata             │││├─┤ │ ├─┤        */
-/*   Updated: 2025/03/11 14:27:18 by tblochet             ┴ ┴┴ ┴ ┴ ┴ ┴        */
+/*   Updated: 2025/04/10 06:12:37 by tblochet             ┴ ┴┴ ┴ ┴ ┴ ┴        */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,32 +23,32 @@
 typedef struct s_mem_manager	t_mem_manager;
 typedef t_mem_manager			t_mm;
 
-typedef struct s_mem_page		t_mem_page;
-typedef t_mem_page				t_mp;
+typedef struct s_page			t_page;
+typedef t_page					t_mp;
 
-typedef struct s_mem_page_node	t_mem_page_node;
-typedef t_mem_page_node			t_mpn;
+typedef struct s_block			t_block;
+typedef t_block					t_mpn;
 
-typedef struct s_mem_page_chunk	t_mem_page_chunk;
-typedef t_mem_page_chunk		t_mpc;
+typedef struct s_chunk			t_chunk;
+typedef t_chunk					t_mpc;
 
 typedef void					*(*t_fn_malloc)(size_t sz);
 typedef void					*(*t_fn_realloc)(void *p, size_t sz);
 typedef void					(*t_fn_free)(void *p);
 
-struct							s_mem_page_chunk
+struct							s_chunk
 {
-	char						x : 1;
-	size_t						sz : 63;
+	char						x;
+	size_t						sz;
 };
 
-struct							s_mem_page
+struct							s_page
 {
 	size_t						sz;
 	void						*mem;
 };
 
-struct							s_mem_page_node
+struct							s_block
 {
 	size_t						len;
 	t_mp						pages[PAGES_PER_NODE];
@@ -57,9 +57,9 @@ struct							s_mem_page_node
 
 struct							s_mem_manager
 {
-	t_fn_free					free;
-	t_fn_malloc					malloc;
-	t_fn_realloc				realloc;
+	t_fn_free					delete;
+	t_fn_malloc					reserve;
+	t_fn_realloc				resize;
 	t_mpn						*pnodes;
 };
 

@@ -6,7 +6,7 @@
 /*   By: tblochet <tblochet@student.42.fr>                └─┘ ┴  ┴ └─┘        */
 /*                                                        ┌┬┐┌─┐┌┬┐┌─┐        */
 /*   Created: 2025/03/09 00:03:16 by ottomata             │││├─┤ │ ├─┤        */
-/*   Updated: 2025/03/11 14:26:32 by tblochet             ┴ ┴┴ ┴ ┴ ┴ ┴        */
+/*   Updated: 2025/04/10 06:11:25 by tblochet             ┴ ┴┴ ┴ ┴ ┴ ┴        */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ static t_mm	__initialize_memory_manager(void)
 {
 	t_mm	manager;
 
-	manager.free = &mm_free;
-	manager.malloc = &mm_malloc;
-	manager.realloc = &mm_realloc;
+	manager.delete = &mm_free;
+	manager.reserve = &mm_malloc;
+	manager.resize = &mm_realloc;
 	manager.pnodes = 0;
 	return (manager);
 }
